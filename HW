@@ -1,0 +1,94 @@
+#include <iostream>
+using namespace std;
+
+int getSum(int arr[]) {
+	int sum = 0;
+	for (int i = 0; i < 5; ++i) {
+		sum += arr[i];
+	}
+	return sum;
+}
+
+double getAvg(int arr[]) {
+	int sum = getSum(arr);
+	return sum / 5.0;
+}
+//- 사용자로부터 5개의 숫자를 입력 받습니다.
+//- 입력 받은 숫자를 배열에 저장합니다.
+//- 배열에 저장된 숫자들의 합계와 평균을 계산합니다.
+//- 계산된 합계와 평균을 출력합니다.
+//- 배열을 인자로 넘겨 받아서 배열 원소들의 합계를 반환하는 함수를 구현해봅니다.
+//- 배열을 인자로 넘겨 받아서 배열 원소들의 평균을 반환하는 함수를 구현해봅니다.
+//- 위에서 만든 합계 함수와 평균 함수를 호출하여 합계와 평균을 출력합니다.
+
+//사용자가 입력한 숫자 배열을 정렬하는 프로그램을 구현해보세요.
+//-정렬은 오름차순 정렬과 내림차순 정렬이 가능해야 합니다.
+//- 숫자 1을 입력 받으면 오름차순 정렬, 숫자 2를 입력 받으면 내림차순 정렬을 하도록 구현해주세요.
+//- `algorithm` 헤더의 `sort` 함수를 사용하지 않고 직접 구현해보세요.
+//- 오름차순 정렬과 내림차순 정렬 동작을 각각 함수로 구현해보세요.
+
+void bigOrder(int arr[]) {
+	for (int i = 0; i <4 ; ++i) {
+		int maxIndex = i;
+		for (int j = i + 1; j < 5; ++j) {
+			if (arr[j] > arr[maxIndex]) {
+				maxIndex = j;
+			}
+		}
+		int temp = arr[i];
+		arr[i] = arr[maxIndex];
+		arr[maxIndex] = temp;
+	}
+}
+
+void smallOrder(int arr[]) {
+	for (int i = 0; i < 4; ++i) {
+		int minIndex = i;
+		for (int j = i + 1; j < 5; ++j) {
+			if (arr[j] < arr[minIndex]) {
+				minIndex = j;
+			}
+		}
+		// 최소값과 현재 위치 값 교환
+		int temp = arr[i];
+		arr[i] = arr[minIndex];
+		arr[minIndex] = temp;
+
+	}
+}
+
+int main() {
+	int arr[5];
+	int sum = 0;
+	double avg = 0;
+	for (int i = 0; i < 5; ++i) {
+		cin >> arr[i];
+		sum += arr[i];
+	}
+	avg = sum / 5.0;
+	cout <<"합 : "<< sum <<", 평균 : " << avg << endl;
+
+	cout << "함수 호출 후 합 : " << getSum(arr) <<endl;
+	cout << "함수 호출 후 평균 : "<<getAvg(arr) << endl;
+
+	int choice;
+	cin >> choice;
+	if (choice == 1) {
+		bigOrder(arr);
+		cout << "내림차순 정렬 결과: ";
+		for (int i = 0; i < 5; ++i) {
+			cout << arr[i] << " ";
+		}
+	}
+	else if (choice == 2) {
+		smallOrder(arr);
+		cout << "오름차순 정렬 결과: ";
+		for (int i = 0; i < 5; ++i) {
+			cout << arr[i] << " ";
+		}
+	}
+
+	return 0;
+}
+
+
