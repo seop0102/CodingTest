@@ -1,0 +1,93 @@
+#include <iostream>
+#include <vector>
+#include <cstdlib>
+#include <ctime>
+
+using namespace std;
+
+class Animal { //-Animal이라는 기본 클래스를 정의 합니다.
+public:
+	virtual void makeSound() = 0; 
+	virtual void move() = 0;
+	virtual ~Animal() {}
+	//- Animal 클래스에는 `makeSound()`라는 순수 가상 함수를 포함합니다.
+};
+//- Animal 클래스를 상속받아 다양한 동물 클래스를 생성합니다.예) Dog, Cat, Cow
+class Dog : public Animal {
+public:
+	void makeSound() override { //- 각 클래스에서 makeSound()함수를 재정의하여 해당 동물의 소리를 출력합니다.
+		cout << "멍멍" << endl;
+	}
+	void move() override {
+		cout << "강아지 질주!" << endl;
+	}
+};
+class Cat : public Animal {
+public:
+	void makeSound() override {
+		cout << "먀옹" << endl;
+	}
+	void move() override {
+		cout << "고양이 질주!" << endl;
+	}
+};
+class Cow : public Animal {
+public:
+	void makeSound() {
+		cout << "음머~~~~~~~~" << endl;
+	}
+	void move() override {
+		cout << "소 질주!" << endl;
+	}
+};
+
+
+class Zoo {
+private:
+	Animal* animals[10];  // 최대 10마리 저장 가능
+	int animalCount = 0;  // 현재 저장된 동물 수
+
+public:
+	void addAnimal(Animal* animal) {
+		if (animalCount < 10) {
+			animals[animalCount++] = animal;
+		}
+		else {
+			cout << "동물원 FULL" << endl;
+		}
+	}
+	void performActions() {
+		for (int i = 0; i < animalCount; ++i) {
+			animals[i]->makeSound();
+			animals[i]->move();
+		}
+	}
+
+	~Zoo() {
+		for (int i = 0; i < animalCount; ++i) {
+			delete animals[i];  // 메모리 해제
+		}
+	}
+};
+
+Animal* createRandomAnimal() {
+	int randVal = rand() % 3;  
+	if (randVal == 0)
+		return new Dog();
+	else if (randVal == 1)
+		return new Cat();
+	else
+		return new Cow();
+}
+
+int main() {
+	srand(time(0));
+	Zoo zoo;
+
+	for (int i = 0; i < 5; ++i) {
+		Animal* animal = createRandomAnimal();
+		zoo.addAnimal(animal);
+	}
+	zoo.performActions();
+	return 0;
+}
