@@ -10,8 +10,13 @@ int solution(vector<vector<string>> clothes) {
         closet[item[1]]++;
     }
     int answer = 1;
-    for( const auto& pair : closet){
+    if(closet.size() == 1) {
+        answer = closet.begin()->second; 
+    } else {
+        for( const auto& pair : closet){
         answer *= (pair.second +1);
+        }
+        answer --;
     }
-    return answer-1;
+    return answer;
 }
