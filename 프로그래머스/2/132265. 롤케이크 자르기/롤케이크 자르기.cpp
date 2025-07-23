@@ -1,32 +1,33 @@
 #include <string>
 #include <vector>
-#include <unordered_map>
 
 using namespace std;
 
 int solution(vector<int> topping) {
     int answer = 0;
-    unordered_map<int,int> left;
-    unordered_map<int,int> right;
+    int a[10001] = {0}; //원소 집어넣을 배열
+    int b[10001] = {0}; 
     
-    int n = topping.size();
+    int leftCount = 0; //갯수 알려줄 배열
+    int rightCount = 0;
     
-    for (int t : topping) {
-        right[t]++;
+    for (int i = 0 ; i < topping.size() ; ++i) {
+        if( b[topping[i]] == 0 ){
+            rightCount++;
+        } b[topping[i]]++;  
     }
-    for (int i = 0 ; i < n-1 ; i++ ) {
+    for (int i = 0 ; i< topping.size()-1; ++i) {
         int top = topping[i];
-        
-        left[top]++;
-        right[top]--;
-        
-        if (right[top] == 0 ) {
-            right.erase(top);
+        if (a[top]==0) {
+            leftCount++;
+        } a[top]++;
+        b[top]--;
+        if(b[top]==0) {
+            rightCount--;
         }
-        if (left.size() == right.size()) {
+        if (leftCount == rightCount) {
             answer++;
         }
     }
-    
     return answer;
 }
