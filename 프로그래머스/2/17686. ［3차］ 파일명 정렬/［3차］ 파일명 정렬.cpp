@@ -30,7 +30,7 @@ vector<string> solution(vector<string> files) {
     vector<pair<pair<string,int>,int>> F;
     for (int i = 0 ; i < files.size(); i++) {
         auto f = divide_file(files[i]);
-        F.push_back({{f.first, f.second}, i} ); //{{head,number},현재index} 저장
+        F.push_back({f, i} ); //{{head,number},현재index} 저장
     }
     // 정렬 기준 : head > number > 현재 index
     sort (F.begin(), F.end(), [] (const pair<pair<string,int>,int>& a, 
