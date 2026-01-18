@@ -10,11 +10,6 @@ int main()
     // ----------------------------------------
     string s;
     getline(cin,s);
-    if (s.empty())
-    {
-        cout<<0;
-        return 0;
-    }
     if (s[0] == ' ' )
     {
         s.erase(0,1);
