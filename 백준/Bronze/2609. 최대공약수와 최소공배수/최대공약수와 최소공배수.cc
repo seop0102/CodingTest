@@ -1,4 +1,5 @@
 #include <iostream>
+#include <numeric>
 
 using namespace std;
 
@@ -9,23 +10,7 @@ int main()
     // ----------------------------------------
     int A,B;
     cin >> A >> B;
-    int minnum =1;
-    for (int i = 1; i<=min(A,B); i++)
-    {
-        if ( A%i == 0 && B%i == 0)
-        {
-            minnum = i;
-        }
-    }
-    int maxnum = 0;
-    if ( minnum != 1)
-    {
-        maxnum = min(A,B) / minnum * max(A,B);
-    } else
-    {
-        maxnum = A*B;
-    }
-    cout << minnum << "\n" << maxnum ;
+    cout << gcd(A,B) << "\n" <<lcm(A,B); 
     // ----------------------------------------
     return 0;
 }
