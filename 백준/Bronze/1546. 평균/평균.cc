@@ -1,6 +1,6 @@
-#include <algorithm>
 #include <iostream>
 #include <vector>
+#include <algorithm>
 
 using namespace std;
 
@@ -12,18 +12,18 @@ int main()
     int N;
     cin >> N;
     vector<int> v(N);
+    int maxnum = -1;
     for (int i = 0; i < N; i++)
     {
         cin >> v[i];
+        maxnum = max(v[i],maxnum);
     }
-    sort(v.begin(), v.end());
-    float max = (float)v[v.size()-1];
     float sum = 0;
     cout.precision(5);
     cout<<fixed;
     for (int j = 0 ; j < N ; j++)
     {
-        float temp = (float)v[j]/max*100;
+        float temp = (float)v[j]/maxnum*100;
         sum += temp;
     }
     cout << sum/float(N);
