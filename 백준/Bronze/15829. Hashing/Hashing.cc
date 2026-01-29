@@ -1,5 +1,4 @@
 #include <iostream>
-#include <queue>
 #include <string>
 
 using namespace std;
@@ -13,16 +12,13 @@ int main()
     string s;
     cin >> N >> s;
     long long sum = 0;
+    long long t = 1;
     for (int i = 0; i < s.length(); i++)
     {
-        int t = 1;
-        for (int j = 1 ; j <= i; j++)
-        {
-            t *= 31;
-        }
-        sum += t * (s[i]-'a'+1);
+        sum += (t * (s[i]-'a'+1)) % 1234567891;
+        t = (t * 31) % 1234567891;
     }
-    cout << sum% 1234567891;
+    cout << sum % 1234567891;
     // ----------------------------------------
     return 0;
 }
