@@ -1,35 +1,12 @@
-#include <iostream>
-#include <string>
-#include <deque>
-
-using namespace std;
-
-
-int main()
-{
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
-    int N , K ;
-    cin >> N >> K;
-    deque<int> d;
-    for (int i = 1; i <= N ; i++)
-    {
-        d.push_back(i);
-    }
-    cout << "<";
-    int current = 0;
-    while (d.empty() == false)
-    {
-        current = (current + K -1) % d.size();
-        if (d.size() == 1)
-        {
-            cout << d[current] << ">";
-        }
-        else
-        {
-            cout << d[current] << ", ";
-        }
-        d.erase(d.begin()+current);
-    }
-    return 0;
-}
+<html>
+<head><title>502 Bad Gateway</title></head>
+<body>
+<center><h1>502 Bad Gateway</h1></center>
+</body>
+</html>
+<!-- a padding to disable MSIE and Chrome friendly error page -->
+<!-- a padding to disable MSIE and Chrome friendly error page -->
+<!-- a padding to disable MSIE and Chrome friendly error page -->
+<!-- a padding to disable MSIE and Chrome friendly error page -->
+<!-- a padding to disable MSIE and Chrome friendly error page -->
+<!-- a padding to disable MSIE and Chrome friendly error page -->
