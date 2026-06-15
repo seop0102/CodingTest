@@ -1,13 +1,19 @@
+#include <string>
+#include <vector>
+
 using namespace std;
 
-int solution(int n) {
-    int total = 0;
-    for (int i = 1; i<=n; i++) {
-        if ( n%i == 0) { //12%1 0 12%2 0 12%3 0 12%4 0 12%5 2 
-            total += n/i;
-        }
-        else {
+int yaksu(int x) {
+    int sum = 0;
+    for (int i = 1; i * i <= x; i++) {
+        if (x % i == 0) {
+            sum += i;
+            if (i != x / i) sum += x / i; 
         }
     }
-    return total;
+    return sum;
+}
+
+int solution(int n) {
+    return yaksu(n);
 }
